@@ -6,7 +6,7 @@
              ThemeContrast="ThemeContrast.Dark">
             <BarBrand>
                 <BarItem>
-                    <BarLink To="">
+                    <BarLink To=".">
                         <BarIcon IconName="IconName.Dashboard" />
                         Programming 2022
                     </BarLink>
@@ -16,16 +16,15 @@
             <BarMenu>
                 <BarStart>
                     <BarItem>
-                        <BarLink To="https://feroxfoxxo.github.io/CSharpCourse/">Home</BarLink>
+                        <BarLink To=".">Home</BarLink>
                     </BarItem>
                     <BarItem>
                         <BarDropdown>
-                            <BarDropdownToggle>Basics</BarDropdownToggle>
+                            <BarDropdownToggle>L0</BarDropdownToggle>
                             <BarDropdownMenu>
-                                <BarDropdownItem>Reading Binary</BarDropdownItem>
+                                <BarDropdownItem To="binary">Reading Binary</BarDropdownItem>
                                 <BarDropdownDivider />
                                 <BarDropdownItem>Data Types</BarDropdownItem>
-                                <BarDropdownItem>Data Structures</BarDropdownItem>
                             </BarDropdownMenu>
                         </BarDropdown>
                     </BarItem>
@@ -44,23 +43,32 @@
         </Bar>
     </LayoutHeader>
     <LayoutContent>
-        @Body
+        <Container Fluid="true" Breakpoint="Breakpoint.Desktop">
+            @Body
+        </Container>
     </LayoutContent>
     <LayoutFooter>
         <Bar Breakpoint="Breakpoint.Desktop"
-             Background="Background.Dark"
-             ThemeContrast="ThemeContrast.Dark">
-             ..
-            <BarBrand>
-                <BarItem>
-                    Made By FeroxFoxxo for AGSPG
+             Background="Background.Light"
+             ThemeContrast="ThemeContrast.Light">
+            <BarBrand />
+            <BarMenu>
+                <BarStart>
+                    <BarItem>
                     <BarIcon IconName="IconName.Heart" />
-                    Find the project on GitHub here:
-                    <a href="https://github.com/FeroxFoxxo/CSharpCourse/">
-                        <BarIcon IconName="IconName.Gift" TextColor="TextColor.Primary"/>
-                    </a>
-                </BarItem>
-            </BarBrand>
+                        Made By FeroxFoxxo for AGSPG
+                    </BarItem>
+                </BarStart>
+                <BarEnd>
+                    <BarItem>
+                        Find the project on GitHub here:
+                        <a href="https://github.com/FeroxFoxxo/CSharpCourse/">
+                            <BarIcon IconName="IconName.Gift" TextColor="TextColor.Primary"/>
+                        </a>
+                    </BarItem>
+                </BarEnd>
+                <BarBrand />
+            </BarMenu>
         </Bar>
     </LayoutFooter>
 </Layout>

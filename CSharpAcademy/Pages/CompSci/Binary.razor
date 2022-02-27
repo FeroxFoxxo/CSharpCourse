@@ -1,0 +1,151 @@
+﻿@page "/binary"
+
+<Container Fluid="true" Breakpoint="Breakpoint.Desktop">
+    <br />
+
+    <DisplayHeading Size="DisplayHeadingSize.Is4" TextAlignment="TextAlignment.Center">💡 Binary 💡</DisplayHeading>
+
+    <a href="https://www.computerhope.com/jargon/b/binary.htm">
+        <Heading Size="HeadingSize.Is6" Alignment="TextAlignment.Center">Source</Heading>
+    </a>
+
+    <Steps SelectedStep="@selectedStep" SelectedStepChanged="@OnSelectedStepChanged">
+        <Items>
+            <Step Name="step1">Intro</Step>
+            <Step Name="step2">Step 2</Step>
+            <Step Name="step3">Step 3</Step>
+            <Step Name="step4">
+                <Marker>
+                    <Icon Name="IconName.Flag" />
+                </Marker>
+                <Caption>
+                    Finish
+                </Caption>
+            </Step>
+        </Items>
+        <Content>
+            <StepPanel Name="step1">
+                <Accordion>
+                    <Collapse Visible="@collapse1Visible">
+                        <CollapseHeader>
+                            <Heading Size="HeadingSize.Is5">
+                                <Button Clicked="@(()=>collapse1Visible = !collapse1Visible)">What is Binary?</Button>
+                            </Heading>
+                        </CollapseHeader>
+                        <CollapseBody>
+                            Binary is a base-2 number system invented by Gottfried Leibniz that's made up of only two numbers or digits: 0 (zero) and 1 (one). This numbering system is the basis for all binary code, which is used to write digital data such as the computer processor instructions used every day.
+                            <br /><br />
+                            The 0s and 1s in binary represent OFF or ON, respectively. In a transistor, a "0" represents no flow of electricity, and "1" represents electricity being allowed to flow. In this way, numbers are represented physically inside the computing device, permitting calculations.
+                        </CollapseBody>
+                    </Collapse>
+                    <br />
+                    <Collapse Visible="@collapse2Visible">
+                        <CollapseHeader>
+                            <Heading Size="HeadingSize.Is5">
+                                <Button Clicked="@(()=>collapse2Visible = !collapse2Visible)">How to Read Binary</Button>
+                            </Heading>
+                        </CollapseHeader>
+                        <CollapseBody>
+                            The following chart illustrates the binary number 01101000.
+                            <br /><br />
+                            <table class="mtable3 tab nobreak">
+                                <tbody><tr class="tcw">
+                                    <td style="width:110px"><b>Exponent:</b></td>
+                                        <td>2<sup>7</sup></td>
+                                        <td>2<sup>6</sup></td>
+                                        <td>2<sup>5 </sup></td>
+                                        <td>2<sup>4 </sup></td>
+                                        <td>2<sup>3</sup></td>
+                                        <td>2<sup>2 </sup></td>
+                                        <td>2<sup>1</sup></td>
+                                        <td>2<sup>0</sup></td>
+                                    </tr>
+                                    <tr class="tcw">
+                                        <td><b>Value:</b></td>
+                                        <td> 128</td>
+                                        <td> 64</td>
+                                        <td>32</td>
+                                        <td>16</td>
+                                        <td>8</td>
+                                        <td> 4</td>
+                                        <td> 2</td>
+                                        <td> 1</td>
+                                    </tr>
+                                    <tr class="tcw">
+                                        <td><b>ON/OFF:</b></td>
+                                        <td>0</td>
+                                        <td>1</td>
+                                        <td>1</td>
+                                        <td>0</td>
+                                        <td>1</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                        <td>0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br />
+                            Each column represents the number two raised to an exponent, with that exponent's value increasing by one as you move through each of the eight positions. To get the total of this example, read the chart from right to left and add each column's value to the previous column: (8+32+64) = 104. As you can see, we do not count the bits with a 0 because they're "turned off."
+                        </CollapseBody>
+                    </Collapse>
+                </Accordion>
+                <br />
+                <Bar Breakpoint="Breakpoint.Desktop"
+                     Background="Background.Light"
+                     ThemeContrast="ThemeContrast.Light">
+                    <BarBrand />
+                    <BarMenu>
+                        <BarStart>
+                            <BarItem>
+                                <Button Color="Color.Primary" Type="ButtonType.Link" To=".">
+                                    <BarIcon IconName="IconName.StepBackward" />
+                                    Back
+                                </Button>
+                            </BarItem>
+                        </BarStart>
+                        <BarEnd>
+                            <BarItem>
+                                <Button Color="Color.Primary" Type="ButtonType.Submit" PreventDefaultOnSubmit="true">
+                                    <BarIcon IconName="IconName.StepForward" />
+                                    Next
+                                </Button>
+                            </BarItem>
+                        </BarEnd>
+                        <BarBrand />
+                    </BarMenu>
+                </Bar>
+            </StepPanel>
+            <StepPanel Name="step2">
+                <Validation UsePattern="true">
+                    <TextEdit Pattern="[A-Za-z]{3}">
+                        <Feedback>
+                            <ValidationError>Pattern does not match!</ValidationError>
+                        </Feedback>
+                    </TextEdit>
+                </Validation>
+            </StepPanel>
+            <StepPanel Name="step3">
+                Content for step 3.
+            </StepPanel>
+            <StepPanel Name="step4">
+                Content for finish.
+            </StepPanel>
+        </Content>
+    </Steps>
+</Container>
+
+@code{
+    bool collapse1Visible = true;
+    bool collapse2Visible = true;
+}
+
+@code{
+    string selectedStep = "step1";
+
+    private Task OnSelectedStepChanged( string name )
+    {
+        selectedStep = name;
+
+        return Task.CompletedTask;
+    }
+}
