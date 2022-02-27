@@ -1,0 +1,44 @@
+﻿<h3>Code Editor</h3>
+
+<div>
+    <div style="margin:10px 0;">
+        <h5>Theme:</h5>
+        <Select TValue="int" SelectedValueChanged="@ChangeTheme">
+            <SelectItem Value="1">Visual Studio</SelectItem>
+            <SelectItem Value="2">Visual Studio Dark</SelectItem>
+            <SelectItem Value="3">High Contrast Black</SelectItem>
+        </Select>
+    </div>
+</div>
+
+<MonacoEditor @ref="_editor" Id="csharp-editor" ConstructionOptions="EditorConstructionOptions" />
+
+@code {
+    string selectedValue;
+    private MonacoEditor _editor { get; set; }
+
+    private StandaloneEditorConstructionOptions EditorConstructionOptions(MonacoEditor editor)
+    {
+        return new StandaloneEditorConstructionOptions
+        {
+            Language = "csharp",
+            GlyphMargin = true,
+            Lightbulb = new EditorLightbulbOptions
+            {
+                Enabled = true
+            }
+        };
+    }
+
+    private async Task ChangeTheme(int themeId)
+    {
+        var theme = themeId switch
+        {
+            1 => "vs",
+            2 => "vs-dark",
+            3 => "hc-black"
+        };
+
+        await MonacoEditor.SetTheme(theme);
+    }
+}

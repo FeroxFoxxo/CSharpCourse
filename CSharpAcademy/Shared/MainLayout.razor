@@ -1,0 +1,66 @@
+﻿@inherits LayoutComponentBase
+<Layout>
+    <LayoutHeader>
+        <Bar Breakpoint="Breakpoint.Desktop"
+             Background="Background.Dark"
+             ThemeContrast="ThemeContrast.Dark">
+            <BarBrand>
+                <BarItem>
+                    <BarLink To="./">
+                        <BarIcon IconName="IconName.Dashboard" />
+                        Programming 2022
+                    </BarLink>
+                </BarItem>
+            </BarBrand>
+            <BarToggler />
+            <BarMenu>
+                <BarStart>
+                    <BarItem>
+                        <BarLink To="../">Home</BarLink>
+                    </BarItem>
+                    <BarItem>
+                        <BarDropdown>
+                            <BarDropdownToggle>Basics</BarDropdownToggle>
+                            <BarDropdownMenu>
+                                <BarDropdownItem>Reading Binary</BarDropdownItem>
+                                <BarDropdownDivider />
+                                <BarDropdownItem>Data Types</BarDropdownItem>
+                                <BarDropdownItem>Data Structures</BarDropdownItem>
+                            </BarDropdownMenu>
+                        </BarDropdown>
+                    </BarItem>
+                    <BarItem>
+                        <BarDropdown>
+                            <BarDropdownToggle>CSharp</BarDropdownToggle>
+                            <BarDropdownMenu>
+                                <BarDropdownItem>Input/Output</BarDropdownItem>
+                                <BarDropdownDivider />
+                                <BarDropdownItem>OwO What's This</BarDropdownItem>
+                            </BarDropdownMenu>
+                        </BarDropdown>
+                    </BarItem>
+                </BarStart>
+            </BarMenu>
+        </Bar>
+    </LayoutHeader>
+    <LayoutContent>
+        @Body
+    </LayoutContent>
+    <LayoutFooter>
+        <Bar Breakpoint="Breakpoint.Desktop"
+             Background="Background.Dark"
+             ThemeContrast="ThemeContrast.Dark">
+             ..
+            <BarBrand>
+                <BarItem>
+                    Made By FeroxFoxxo for AGSPG
+                    <BarIcon IconName="IconName.Heart" />
+                    Find the project on GitHub here:
+                    <a href="https://www.google.com/">
+                        <BarIcon IconName="IconName.Gift" TextColor="TextColor.Primary"/>
+                    </a>
+                </BarItem>
+            </BarBrand>
+        </Bar>
+    </LayoutFooter>
+</Layout>
