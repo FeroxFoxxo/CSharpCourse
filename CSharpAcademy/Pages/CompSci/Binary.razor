@@ -89,31 +89,6 @@
                         </CollapseBody>
                     </Collapse>
                 </Accordion>
-                <br />
-                <Bar Breakpoint="Breakpoint.Desktop"
-                     Background="Background.Light"
-                     ThemeContrast="ThemeContrast.Light">
-                    <BarBrand />
-                    <BarMenu>
-                        <BarStart>
-                            <BarItem>
-                                <Button Color="Color.Primary" Type="ButtonType.Link" To=".">
-                                    <BarIcon IconName="IconName.StepBackward" />
-                                    Back
-                                </Button>
-                            </BarItem>
-                        </BarStart>
-                        <BarEnd>
-                            <BarItem>
-                                <Button Color="Color.Primary" Type="ButtonType.Submit" PreventDefaultOnSubmit="true">
-                                    <BarIcon IconName="IconName.StepForward" />
-                                    Next
-                                </Button>
-                            </BarItem>
-                        </BarEnd>
-                        <BarBrand />
-                    </BarMenu>
-                </Bar>
             </StepPanel>
             <StepPanel Name="step2">
                 <Validation UsePattern="true">
@@ -130,6 +105,30 @@
             <StepPanel Name="step4">
                 Content for finish.
             </StepPanel>
+            <Bar Breakpoint="Breakpoint.Desktop"
+                     Background="Background.Light"
+                     ThemeContrast="ThemeContrast.Light">
+                    <BarBrand />
+                    <BarMenu>
+                        <BarStart>
+                            <BarItem>
+                                <Button Color="Color.Primary" Type="@returnToHomePageMode()" To="." onclick="@DecStep">
+                                    <BarIcon IconName="IconName.StepBackward" />
+                                    Back
+                                </Button>
+                            </BarItem>
+                        </BarStart>
+                        <BarEnd>
+                            <BarItem>
+                                <Button style="@appearnce()" Color="Color.Primary" Type="ButtonType.Submit" PreventDefaultOnSubmit="true" onclick="@IncStep">
+                                    <BarIcon IconName="IconName.StepForward" />
+                                    Next
+                                </Button>
+                            </BarItem>
+                        </BarEnd>
+                        <BarBrand />
+                    </BarMenu>
+                </Bar>
         </Content>
     </Steps>
 </Container>
@@ -141,10 +140,43 @@
 
 @code{
     string selectedStep = "step1";
+    const int max_step = 4;
+    int current_step = 1;
+
+    public void IncStep(){
+        if(current_step + 1 <= max_step){
+            current_step ++;
+            selectedStep = String.Format("step{0}",current_step);
+        }
+    }
+
+    public void DecStep(){
+        if(current_step - 1 >= 1){
+            current_step --;
+            selectedStep = String.Format("step{0}",current_step);
+        }
+    }
+
+    public string appearnce(){
+        if(current_step == max_step){
+            return "display: none;";
+        }
+        return "";
+    }
+
+    public Blazorise.ButtonType returnToHomePageMode(){
+        if(current_step == 1){
+            return ButtonType.Link;
+        }else{
+            return ButtonType.Submit;
+        }
+    }
+
 
     private Task OnSelectedStepChanged( string name )
     {
         selectedStep = name;
+        Int32.TryParse(name.Replace("step",""),out current_step);
 
         return Task.CompletedTask;
     }
